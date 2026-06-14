@@ -7,4 +7,3 @@ result = a | b
 print(f"a = {a} (Binary: {bin(a)})")
 print(f"b = {b} (Binary: {bin(b)})")
 print(f"Result of a | b: {result} (Binary: {bin(result)})")
-

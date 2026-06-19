@@ -14,6 +14,16 @@ let greeting = "Hello, World!";
 console.log(greeting);
 
 // undefined
-console.log(x)
+console.log(x);
 
+// function examples
+const rollNumbers = [101, 102, 103];
 
+function PrintResult(rollNum) {
+  alert("username with roll number: " + rollNum + " has passed the exam.");
+}
+
+// loops
+for (let i = 0; i < rollNumbers.length; i++) {
+  PrintResult(rollNumbers[i]);
+}

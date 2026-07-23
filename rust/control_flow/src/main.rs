@@ -53,6 +53,63 @@ enum UsState {
     Wyoming,
 }
 
+impl UsState {
+    fn existed_in(&self, year: u16) -> bool {
+        match self {
+            UsState::Delaware => year >= 1787,
+            UsState::Pennsylvania => year >= 1787,
+            UsState::NewJersey => year >= 1787,
+            UsState::Georgia => year >= 1788,
+            UsState::Connecticut => year >= 1788,
+            UsState::Massachusetts => year >= 1788,
+            UsState::Maryland => year >= 1788,
+            UsState::SouthCarolina => year >= 1788,
+            UsState::NewHampshire => year >= 1788,
+            UsState::Virginia => year >= 1788,
+            UsState::NewYork => year >= 1788,
+            UsState::NorthCarolina => year >= 1789,
+            UsState::RhodeIsland => year >= 1790,
+            UsState::Vermont => year >= 1791,
+            UsState::Kentucky => year >= 1792,
+            UsState::Tennessee => year >= 1796,
+            UsState::Ohio => year >= 1803,
+            UsState::Louisiana => year >= 1812,
+            UsState::Indiana => year >= 1816,
+            UsState::Mississippi => year >= 1817,
+            UsState::Illinois => year >= 1818,
+            UsState::Alabama => year >= 1819,
+            UsState::Maine => year >= 1820,
+            UsState::Missouri => year >= 1821,
+            UsState::Arkansas => year >= 1836,
+            UsState::Michigan => year >= 1837,
+            UsState::Florida => year >= 1845,
+            UsState::Texas => year >= 1845,
+            UsState::Iowa => year >= 1846,
+            UsState::Wisconsin => year >= 1848,
+            UsState::California => year >= 1850,
+            UsState::Minnesota => year >= 1858,
+            UsState::Oregon => year >= 1859,
+            UsState::Kansas => year >= 1861,
+            UsState::WestVirginia => year >= 1863,
+            UsState::Nevada => year >= 1864,
+            UsState::Nebraska => year >= 1867,
+            UsState::Colorado => year >= 1876,
+            UsState::NorthDakota => year >= 1889,
+            UsState::SouthDakota => year >= 1889,
+            UsState::Montana => year >= 1889,
+            UsState::Washington => year >= 1889,
+            UsState::Idaho => year >= 1890,
+            UsState::Wyoming => year >= 1890,
+            UsState::Utah => year >= 1896,
+            UsState::Oklahoma => year >= 1907,
+            UsState::NewMexico => year >= 1912,
+            UsState::Arizona => year >= 1912,
+            UsState::Alaska => year >= 1959,
+            UsState::Hawaii => year >= 1959,
+        }
+    }
+}
+
 enum Coin {
     Penny,
     Nickel,
@@ -74,6 +131,27 @@ fn main() {
         7 => remove_fancy_hat(),
         other => move_player(other),
         // If value doesn't bind use wildcard (_)
+    }
+
+    // `if let`
+    let config_max = Some(3u8);
+    match config_max {
+        Some(max) => println!("The maximum is configured to be {max}"),
+        _ => (),
+    }
+
+    // More concise method of above using `if let`
+    let config_max = Some(10u8);
+    if let Some(max) = config_max {
+        println!("The maximum is configured to be {max}");
+    }
+
+    // Using `if let` on the coin
+    let mut count = 0;
+    if let Coin::Quarter(state) = coin {
+        println!("State quarter from {state:?}!");
+    } else {
+        count += 1;
     }
 }
 
@@ -110,4 +188,17 @@ fn remove_fancy_hat() {
 
 fn move_player(num_spaces: u8) {
     todo!();
+}
+
+// `let else`
+fn describe_state_quarter(coin: Coin) -> Option<String> {
+    let Coin::Quarter(state) = coin else {
+        return None;
+    };
+
+    if state.existed_in(1900) {
+        Some(format!("{state:?} is pretty old, for America!"))
+    } else {
+        Some(format!("{state:?} is relatively new."))
+    }
 }

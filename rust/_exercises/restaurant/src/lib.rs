@@ -1,3 +1,5 @@
+pub use crate::front_of_house::hosting
+
 pub fn add(left: u64, right: u64) -> u64 {
     left + right
 }
@@ -7,7 +9,7 @@ pub fn eat_at_restaurant() {
     crate::front_of_house::hosting::add_to_waitlist();
 
     // Relative path
-    front_of_house::hosting::add_to_waitlist();
+    hosting::add_to_waitlist();
 
     // Order a breakfast in the summer with rye toast
     let mut meal = back_of_house::Breakfast::summer("Rye");
@@ -25,31 +27,7 @@ fn deliver_order() {
     todo!();
 }
 
-mod front_of_house {
-    // Making a module public doesn't make it's contents public
-    pub mod hosting {
-        pub fn add_to_waitlist() {
-            todo!();
-        }
-        fn seat_at_table() {
-            todo!();
-        }
-    }
-
-    mod serving {
-        fn take_order() {
-            todo!();
-        }
-
-        fn serve_order() {
-            todo!();
-        }
-
-        fn take_payment() {
-            todo!();
-        }
-    }
-}
+mod front_of_house;
 
 mod back_of_house {
     fn fix_incorrect_order() {
